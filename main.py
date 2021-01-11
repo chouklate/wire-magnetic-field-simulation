@@ -1,7 +1,4 @@
-"""
-직선 도선에 의한 자기장 시뮬레이션
-by 최성민 (https://www.github.com/chouklate)
-"""
+
 
 import numpy as np
 from numpy import array as V
