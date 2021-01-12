@@ -1,3 +1,12 @@
+# Variables --------------------------------------
+R = 7  #Calculates value for every R pixels (horizontally and vertically). Increasing this value slower computation
+DR = 4 # Draw X or Os every R * DR pixels
+HEIGHT = 600 # Screen height
+WIDTH = 1000 # Screen width
+
+# ------------------------------------------------
+
+
 import numpy as np
 from numpy import array as V
 import pygame
@@ -17,7 +26,7 @@ class Wire:
         self.a = p1
         dp = p2 - p1
         dp_norm = np.linalg.norm(dp)
-        self.n = dp / np.linalg.norm(dp) if dp_norm != 0 else V([1,0])
+        self.n = dp / np.linalg.norm(dp) if dp_norm != 0 else V([1,0]) # if clicked on same location twice
 
 
     def getDistance(self, p):
@@ -60,7 +69,8 @@ def getBmap():
             Bmap[i][j] += Wires[-1].getB(V([i*R, j*R]))
         print("row {} of {} complete (step {})".format(i, len(Bmap)-1, R))
         print("Calculated!")
-
+    # It probably would be much faster to approximate the B value by grouping points in a certain range to a wire,
+    # applying the B value, and iterating over every wire but oh well
 
 
 def drawBmap():
@@ -120,10 +130,7 @@ def getColor(B):
     return color
 
 # Pygame variables
-R = 5  #Calc Resolution
-DR = 4 # Draw Ratio (Drawn pixels = every R * DR th)
-HEIGHT = 600
-WIDTH = 1000
+
 FPS = 60
 display = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("자기장 시뮬레이션")
@@ -136,13 +143,13 @@ Bmap = np.zeros((WIDTH//R + 1, HEIGHT//R+1), dtype="float32")
 
 Wires = []
 
-# pygame logic --------------
+# pygame logic -----------------------------------
 
 drawBmap()
 
 while run:
     mousePos = pygame.mouse.get_pos()
-    t1 = time.time()
+    #t1 = time.time()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -163,10 +170,9 @@ while run:
     display.blit(text_surface, (0,0))
     pygame.display.update()
     clock.tick(FPS)
-    t2 = time.time()
-    if(t2-t1 >0.0001):
-        #print(round(1/(t2-t1)))
-        pass
+    #t2 = time.time()
+    #if(t2-t1 >0.0001):
+    #    pass
 
 pygame.quit()
 
