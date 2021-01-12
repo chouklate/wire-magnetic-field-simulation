@@ -1,5 +1,5 @@
 # Variables --------------------------------------
-R = 7  #Calculates value for every R pixels (horizontally and vertically). Increasing this value will result in slower computation
+R = 7  #Calculates value for every R pixels (horizontally and vertically). Decreasing this value will result in slower computation
 DR = 4 # Draw X or Os every R * DR pixels
 HEIGHT = 600 # Screen height
 WIDTH = 1000 # Screen width
