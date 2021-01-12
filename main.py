@@ -1,8 +1,3 @@
-"""
-직선 도선에 의한 자기장 시뮬레이션
-by 최성민 (https://www.github.com/chouklate)
-"""
-
 import numpy as np
 from numpy import array as V
 import pygame
@@ -28,9 +23,7 @@ class Wire:
     def getDistance(self, p):
         """calculate distance from point p"""
         pVector = (self.a - p) -((np.dot((self.a-p), self.n))*self.n)
-        #print(pVector)
         dVector = np.cross(self.n, pVector) # - if coming in + if coming out
-        #print(dVector)
         if dVector > 0:
             return np.linalg.norm(pVector)
         else:
