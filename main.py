@@ -68,7 +68,7 @@ def getBmap():
         for j in range(0, len(Bmap[0])):
             Bmap[i][j] += Wires[-1].getB(V([i*R, j*R]))
         print("row {} of {} complete (step {})".format(i, len(Bmap)-1, R))
-        print("Calculated!")
+    print("Calculated!")
     # It probably would be much faster to approximate the B value by grouping points in a certain range to a wire,
     # applying the B value, and iterating over every wire but oh well
 
